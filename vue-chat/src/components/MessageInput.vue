@@ -1,7 +1,6 @@
 <template>
-  <div class="message-input w-full max-w-2xl bg-white shadow-md rounded-lg p-4 mt-8 flex flex-col space-y-4">
-    <input v-model="username" type="text" placeholder="Your name" class="input-field" />
-    <textarea v-model="message" placeholder="Type a message" class="input-field h-24"></textarea>
+  <div class="message-input w-full p-4 border-t flex space-x-4">
+    <textarea v-model="message" placeholder="Type a message" class="input-field flex-grow h-12 resize-none"></textarea>
     <button @click="handleSubmit" class="btn">Send</button>
   </div>
 </template>
@@ -11,16 +10,14 @@ export default {
   name: 'MessageInput',
   data() {
     return {
-      username: '',
       message: '',
     };
   },
   methods: {
     handleSubmit() {
-      if (this.username && this.message) {
+      if (this.message) {
         const messageData = {
           timestamp: new Date().toISOString(),
-          username: this.username,
           message: this.message,
         };
         this.$emit('sendMessage', messageData);
